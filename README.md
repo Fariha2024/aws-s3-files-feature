@@ -108,7 +108,7 @@ Same S3 bucket can be mounted as:
 👉 S3 Files provides a shared, NFS-mounted file system interface where changes are asynchronously synchronized to S3 and can be accessed by thousands of compute resources at the same time.
 
 
-### 🔷 🔗 What is NFS?
+### 🔷 What is NFS?
 
 👉 NFS = a protocol that lets computers access files over a network like a local file system.
 
@@ -123,7 +123,7 @@ So now:
 👉 S3 can be accessed like a local file system
 
 
-## 🔷 🔥 Why this is important
+## 🔥 Why this is important
 
 ### ❌ Before S3 Files (the messy world)
 
@@ -139,7 +139,7 @@ Companies often needed two systems:
 
 
 
-### 🔹💀 Problem:
+### 💀 Problem:
 
 To make both work, companies had to:
 
@@ -159,7 +159,7 @@ EFS → sync → S3 → update again (slow + complex)
 
 5️⃣ Sync EFS → S3 again         
 
-⚠️ Problems in this flow
+### ⚠️ Problems in this flow
 
 That causes:
 
