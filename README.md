@@ -46,7 +46,7 @@ It lets you:
 
 . Use S3 like a normal folder system
 
-## 🧠 Before How S3 actually works:
+# 🧠 Before How S3 actually works:
 
 S3 works like this:
 
@@ -69,9 +69,11 @@ S3 works like this:
 ❌ Replace normal file code with extra SDK /API calls
 
 . instead of:
+
              open("file.txt")
 
 They write: 
+
             s3.get_object(Bucket="my-bucket", Key="file.txt")
 
 ❌ Add extra steps
@@ -86,7 +88,7 @@ Apps needed to:
       File-based apps can't use S3 like a normal file system
 
 
-🔹 ✅ Now:
+# 🔹 ✅ Now:
 
 Same S3 bucket can be mounted as:
 
@@ -106,7 +108,7 @@ Same S3 bucket can be mounted as:
 👉 S3 Files provides a shared, NFS-mounted file system interface where changes are asynchronously synchronized to S3 and can be accessed by thousands of compute resources at the same time.
 
 
-#### 🔷 🔗 What is NFS?
+### 🔷 🔗 What is NFS?
 
 👉 NFS = a protocol that lets computers access files over a network like a local file system.
 
@@ -121,9 +123,9 @@ So now:
 👉 S3 can be accessed like a local file system
 
 
-#### 🔷 🔥 Why this is important
+## 🔷 🔥 Why this is important
 
-❌ Before S3 Files (the messy world)
+### ❌ Before S3 Files (the messy world)
 
 Companies often needed two systems:
 
@@ -131,13 +133,13 @@ Companies often needed two systems:
 
      . For storing raw data (cheap, scalable)
 
-2. File system (like Amazon EFS -> Elastic File System for AWS )
+2. File system ( like Amazon EFS )
 
      . For apps that need folders/files
 
 
 
-🔹💀 Problem:
+### 🔹💀 Problem:
 
 To make both work, companies had to:
 
@@ -161,7 +163,7 @@ EFS → sync → S3 → update again (slow + complex)
 
 That causes:
 
-❌ 1. duplicate data
+- ❌ 1. duplicate data
 
 Same file exists in:
 
@@ -171,7 +173,9 @@ Same file exists in:
 
 👉 Waste of storage
 
-❌ 2. Extra steps
+
+
+- ❌ 2. Extra steps
 
 You must:
 
@@ -181,14 +185,17 @@ You must:
 
 👉 More complexity
 
-❌ 3. Time delay
+
+
+- ❌ 3. Time delay
 
 . Large datasets = slow copying
 
 👉 ML training delayed
 
 
-❌ 4. Sync issues
+
+- ❌ 4. Sync issues
 
 . If you forget to sync:
     
@@ -198,10 +205,10 @@ You must:
 
 . extra cost
 
-💀 Messy + expensive
+### 💀 Messy + expensive
 
 
-#### 🔷 Think of it like:
+### 🔷 Think of it like:
 
 . S3 = warehouse
 
@@ -214,7 +221,7 @@ Go to warehouse → bring files to desk → work → return them back
 👉 Too much back-and-forth
 
 
-#### 🔷 ✅ Now with S3 Files
+### 🔷 ✅ Now with S3 Files
 
 👉 You store data only once in S3
 
@@ -224,7 +231,7 @@ And it can be used in two ways at the same time:
 
 . as a file system (mounted folder)
 
-#### 🔷 🎯 Key idea (VERY important)
+### 🔷 🎯 Key idea (VERY important)
 
 👉 “One copy, one place”
 
@@ -247,9 +254,9 @@ And it can be used in two ways at the same time:
 ✅ Now Work directly on S3 like a file system (simple + fast)
 
 
-## 🔍 Break the definition into simple parts
+# 🔍 Break the definition into simple parts
 
-##### 🔷 🧩 1. “Shared file system”
+### 🔷 🧩 1. “Shared file system”
 
 🔹👉 Means:
 
@@ -270,14 +277,14 @@ So:
 👉 All of them see the SAME folder
 
 
-#### 🔷 🔗 2. “Connects compute directly with S3”
+### 🔷 🔗 2. “Connects compute directly with S3”
 
 👉 No manual copying or syncing pipelines are needed
 
 👉 Data is accessed directly, and synchronization is handled automatically by the system
 
 
-#### 🔷 📂 3. “Access S3 as files”
+### 🔷 📂 3. “Access S3 as files”
 
 👉 "Fast access with file system"
 
@@ -308,10 +315,11 @@ This means:
 . delete()
 
 👉 all work normally
+s
 👉 It feels like your PC folders
 
 
-#### 🔷 🚫 4. “Without data leaving S3”
+### 🔷 🚫 4. “Without data leaving S3”
 
 🚫 “No data silos”
 
@@ -360,7 +368,6 @@ Because:
    
    . S3 remains the main source
    
-   . it’s not the main storage
 
 👉 Apps use it directly
 
@@ -383,11 +390,11 @@ So:
 💡So it removes data duplication acreoss storage systems
 
 
-#### 🔷 🛠️ 5. “Use existing tools”
+### 🔷 🛠️ 5. “Use existing tools”
 
 This is HUGE.
 
-##### 🧠 Before:
+ 🧠 Before:
 
 Tools didn’t understand S3:
 Apps had to use:
@@ -403,7 +410,7 @@ Apps had to use:
 . S3 APIs
 
 
-##### ✅ Now With S3 Files
+### ✅ Now With S3 Files
 
 . Now the same bucket behaves like a normal folder:
 
@@ -453,7 +460,7 @@ This means:
 - Large or less-used files → streamed directly from S3
 
 
-#### 🎯 Simple idea:
+### 🎯 Simple idea:
 
 👉 It gives you:
 
@@ -462,7 +469,7 @@ This means:
 . scale of S3
 
 
-### what’s really happens behind the scenes:
+## what’s really happens behind the scenes:
 
 🔄  Seamless Synchronization 
 
@@ -471,7 +478,9 @@ This means:
 👉 When you use S3 Files like a normal folder:
 
 touch notes.txt
+
 nano notes.txt
+
 rm notes.txt
 
 It feels like a normal file system…
@@ -481,11 +490,10 @@ It feels like a normal file system…
 
 👉 You are editing files through a file system layer, and AWS handles syncing to S3 in the background.
 
-. Instead:
 
-⚙️ Flow:
+### ⚙️ Flow:
 
-1. You make a change (edit/create/delete)
+1. You make a change (edit / create / delete)
 
 2. It happens locally (through the mounted system)
 
@@ -494,6 +502,7 @@ It feels like a normal file system…
 👉 This is called asynchronous sync
 
 ⚠️ Very Important
+
 Changes are:
 
 ❌ NOT instant in S3
@@ -501,14 +510,16 @@ Changes are:
 ✅ Changes are written quickly to a fast layer and then Synchronized to S3 after a short delay
 
 👉 So:
+
 . Two systems might briefly see different versions
 
 
-###### 🎮 Analogy
+### 🎮 Analogy
 
 Like Google Docs offline mode:
 
 . You type → changes save locally
+
 . Then sync to cloud after
 
 
@@ -517,12 +528,14 @@ Like Google Docs offline mode:
 👉 S3 Files acts like a shared folder where:
 
 . You work locally like a file system
+
 . Changes sync back to S3 automatically
+
 . Thousands of machines can use it together
 
 
 
-## 💰 What “Cost Efficiency” means in S3 Files
+# 💰 What “Cost Efficiency” means in S3 Files
 
 This is about scaling + cost.
 
@@ -533,10 +546,11 @@ You don’t pre-build storage like old systems.
 Instead:
 
 . it grows automatically with data
+
 . cached data automatically expires over time if not used
 
 
-📈 Scale elastically + pay only for what you use
+### 📈 Scale elastically + pay only for what you use
 
 👉 With S3 Files, you are NOT storing everything in an expensive file system
 
@@ -544,7 +558,7 @@ Instead, AWS splits your data into two layers:
 
 
 
-🧠 The 2-layer system
+### 🧠 The 2-layer system
 
 1. 🐢 Main storage (cheap)
 
@@ -569,7 +583,7 @@ Instead, AWS splits your data into two layers:
 
 
 
-##### 🎯 Why this saves money
+### 🎯 Why this saves money
 
 ❌ Old way (before S3 Files)
 
@@ -588,7 +602,7 @@ You had to:
 . Even rarely used data costs you money
 
 
-#### ✅ New way (S3 Files)
+### ✅ New way (S3 Files)
 
 💰 Better cost efficiency
 
@@ -608,7 +622,7 @@ So cost depends on:
 This is a huge benefit for companies.
 
 
-##### 📊 Simple example
+### 📊 Simple example
 
 Let’s say you have 1 TB data
 
@@ -661,32 +675,32 @@ You stop paying for the same data twice.
 
 👉 S3 Files reduces cost by keeping most data in cheap S3 and only caching frequently accessed data in a small, fast high-performance layer.
 
-### Benefits of S3 Files:
+# Benefits of S3 Files:
 
 S3 Files gives you:                                   
 
-📁 file system behavior
+- 📁 file system behavior
 
-⚡ extremely high speed (millions of operations/sec)
+- ⚡ extremely high speed (millions of operations/sec)
 
-💰 reduces cost by keeping inactive data in S3, cheaper storage
+- 💰 reduces cost by keeping inactive data in S3, cheaper storage
 
-🔄 no duplication, works with existing applications and scripts
+- 🔄 no duplication, works with existing applications and scripts
 
-🚀 provides low-latency, massive data transfer speed (TB/s)
+- 🚀 provides low-latency, massive data transfer speed (TB/s)
 
-🚫 uses intelligent caching for speed, no manual data syncing pipelines required 
+- 🚫 uses intelligent caching for speed, no manual data syncing pipelines required 
 
-🌍 works with multiple AWS compute services (EC2,containers,Lambda,setc.)
+- 🌍 works with multiple AWS compute services (EC2,containers,Lambda,setc.)
 
-👥 huge concurrency (25,000+ systems)
+- 👥 huge concurrency (25,000+ systems)
 
-💡 Benefit: Store your data once and access it everywhere
+- 💡 Benefit: Store your data once and access it everywhere
 
 All on top of S3.
 
 
-🧠 Simple mental model
+### 🧠 Simple mental model
 
 Think of it like:
 
@@ -699,12 +713,12 @@ Think of it like:
 . without copying data anywhere
 
 
-##### 🧠 SIMPLE DEFINITION
+### 🧠 SIMPLE DEFINITION
 
 👉 S3 Files is a system that lets you use S3 like a normal shared file system, while keeping data in S3 and speeding up access using a smart caching layer.
 
 
-⚠️ But don’t get fooled (very important )
+### ⚠️ But don’t get fooled (very important )
 
 Even with S3 Files:
 
