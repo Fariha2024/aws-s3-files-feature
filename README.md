@@ -31,7 +31,7 @@ Your apps expect:
 
 💡 But Amazon Web Services normally doesn’t work like that.
 
-### 🔷 🧠 The CORE idea (remember this)
+### 🧠 The CORE idea (remember this)
 
 👉 S3 Files = a bridge between “storage” and “file system”
 
@@ -46,7 +46,7 @@ It lets you:
 
 . Use S3 like a normal folder system
 
-# 🧠 Before How S3 actually works:
+### 🧠 Before How S3 actually works:
 
 S3 works like this:
 
@@ -88,7 +88,7 @@ Apps needed to:
       File-based apps can't use S3 like a normal file system
 
 
-# 🔹 ✅ Now:
+### 🔹 ✅ Now:
 
 Same S3 bucket can be mounted as:
 
@@ -208,7 +208,7 @@ You must:
 ### 💀 Messy + expensive
 
 
-### 🔷 Think of it like:
+## 🔷 Think of it like:
 
 . S3 = warehouse
 
@@ -231,9 +231,9 @@ And it can be used in two ways at the same time:
 
 . as a file system (mounted folder)
 
-### 🔷 🎯 Key idea (VERY important)
+## 🎯 Key idea (VERY important)
 
-👉 “One copy, one place”
+### 👉 “One copy, one place”
 
 1. no duplication
 
@@ -256,7 +256,7 @@ And it can be used in two ways at the same time:
 
 # 🔍 Break the definition into simple parts
 
-### 🔷 🧩 1. “Shared file system”
+## 🔷 1. “Shared file system”
 
 🔹👉 Means:
 
@@ -277,14 +277,14 @@ So:
 👉 All of them see the SAME folder
 
 
-### 🔷 🔗 2. “Connects compute directly with S3”
+## 🔷 2. “Connects compute directly with S3”
 
 👉 No manual copying or syncing pipelines are needed
 
 👉 Data is accessed directly, and synchronization is handled automatically by the system
 
 
-### 🔷 📂 3. “Access S3 as files”
+## 🔷 3. “Access S3 as files”
 
 👉 "Fast access with file system"
 
@@ -292,13 +292,13 @@ So:
 
 👉 This is the MOST important line
 
-🔹Before:
+### 🔹Before:
 
 - You had to write code like:
 
   s3.get_object()
 
-🔹Now:
+### 🔹Now:
 
 - You just do:
 
@@ -315,13 +315,13 @@ This means:
 . delete()
 
 👉 all work normally
-s
+
 👉 It feels like your PC folders
 
 
-### 🔷 🚫 4. “Without data leaving S3”
+## 🔷 4. “Without data leaving S3”
 
-🚫 “No data silos”
+### 🚫 “No data silos”
 
 🔹👉 Before:
 
@@ -331,9 +331,9 @@ s
 
 . Data in other systems
 
-💀 Everything separated
+### 💀 Everything separated
 
-🔹👉 Now:
+### 🔹👉 Now:
 
 . Everything stays in one place (S3)
 
@@ -346,7 +346,7 @@ And access it as:
 At the same time.
 
 
-👉 Means:
+### 👉 Means:
 
 👉 Your main data is stays in S3
 
@@ -371,7 +371,7 @@ Because:
 
 👉 Apps use it directly
 
-🔄 Now Sync happens automatically
+### 🔄 Now Sync happens automatically
 
 👉 reads → come from cache or S3
 
@@ -390,11 +390,11 @@ So:
 💡So it removes data duplication acreoss storage systems
 
 
-### 🔷 🛠️ 5. “Use existing tools”
+## 🔷 5. “Use existing tools”
 
 This is HUGE.
 
- 🧠 Before:
+### 🧠 Before:
 
 Tools didn’t understand S3:
 Apps had to use:
@@ -431,8 +431,7 @@ Apps had to use:
 . Linux applications
 
   
-   All of them expect files and folders
-   Now they can directly use S3
+###  All of them expect files and folder Now they can directly use S3
 
 👉 Everything just works:
 
@@ -471,7 +470,7 @@ This means:
 
 ## what’s really happens behind the scenes:
 
-🔄  Seamless Synchronization 
+### 🔄  Seamless Synchronization 
 
 👉 S3 Files = S3 + file system layer on top
 
@@ -486,7 +485,7 @@ rm notes.txt
 It feels like a normal file system…
 
 
-🧠 But behind the scenes:
+### 🧠 But behind the scenes:
 
 👉 You are editing files through a file system layer, and AWS handles syncing to S3 in the background.
 
@@ -507,7 +506,7 @@ Changes are:
 
 ❌ NOT instant in S3
 
-✅ Changes are written quickly to a fast layer and then Synchronized to S3 after a short delay
+### ✅ Changes are written quickly to a fast layer and then Synchronized to S3 after a short delay
 
 👉 So:
 
@@ -523,7 +522,7 @@ Like Google Docs offline mode:
 . Then sync to cloud after
 
 
-💡 Simple combined understanding
+### 💡 Simple combined understanding
 
 👉 S3 Files acts like a shared folder where:
 
@@ -539,7 +538,7 @@ Like Google Docs offline mode:
 
 This is about scaling + cost.
 
-🧠 Meaning:
+### 🧠 Meaning:
 
 You don’t pre-build storage like old systems.
 
@@ -583,9 +582,9 @@ Instead, AWS splits your data into two layers:
 
 
 
-### 🎯 Why this saves money
+## 🎯 Why this saves money
 
-❌ Old way (before S3 Files)
+### ❌ Old way (before S3 Files)
 
 If you wanted:
 
@@ -595,7 +594,7 @@ You had to:
 
 👉 Put EVERYTHING in EFS
 
-💀 Problem:
+### 💀 Problem:
 
 . EFS is expensive
 
@@ -604,7 +603,7 @@ You had to:
 
 ### ✅ New way (S3 Files)
 
-💰 Better cost efficiency
+### 💰 Better cost efficiency
 
 . Only frequently accessed or recently used data is cached in EFS (small portion)
 . rest remains in cheap S3
@@ -626,14 +625,14 @@ This is a huge benefit for companies.
 
 Let’s say you have 1 TB data
 
-❌ Old setup:
+### ❌ Old setup:
 
 . All in EFS
 
   → 💸 Very expensive
 
 
-✅ With S3 Files:
+### ✅ With S3 Files:
 
 . 950 GB → S3 (cheap)
 
@@ -642,7 +641,8 @@ Let’s say you have 1 TB data
 👉 HUGE cost reduction  
 
 
-🔥 can reduce costs significantly
+### 🔥 can reduce costs significantly
+
 It comes from:
 
 . Not duplicating data
@@ -653,11 +653,11 @@ It comes from:
 
 . No double storage
 
-💡 Simple idea:
+### 💡 Simple idea:
 
 You stop paying for the same data twice.
 
-👉 You avoid:
+### 👉 You avoid:
 
 . traditional EFS storage (expensive)
 
@@ -666,12 +666,12 @@ You stop paying for the same data twice.
 . Extra storage copies
 
 
-⚠️ Important
+### ⚠️ Important
 
 👉 It’s cheaper, not free
 
 
-💡 One-line understanding
+### 💡 One-line understanding
 
 👉 S3 Files reduces cost by keeping most data in cheap S3 and only caching frequently accessed data in a small, fast high-performance layer.
 
